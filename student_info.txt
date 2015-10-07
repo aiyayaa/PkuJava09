@@ -1,2 +1,2 @@
-name£ºZhang Xitao
-number£º1501220100
+name:Zhang Xitao
+number:1501220100
