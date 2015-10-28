@@ -6,7 +6,7 @@
  * Elements in a triplet (a,b,c) must be in non-descending order. (ie, a ¡Ü b ¡Ü c)
  * The solution set must not contain duplicate triplets.
  */
-package leetcode.threesum;
+//package leetcode.threesum;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,7 +42,7 @@ public class Solution {
 						p++;
 					}
 					p++;
-					while (q-1>p && q-1 == num[q]) {
+					while (q-1>p && num[q-1] == num[q]) {
 						q--;
 					}
 					q--;
