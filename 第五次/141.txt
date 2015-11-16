@@ -1,0 +1,31 @@
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+ //定义一个set装入元素，判断是否包含新节点。
+public class Solution {
+    public boolean hasCycle(ListNode head) {
+        if(head == null || head.next == null)
+            return false;
+        
+        ListNode runner = head , roller = head;
+        while (runner != null) {
+            roller = roller.next;
+            runner = runner.next;
+            if (runner == null) return false;
+            runner = runner.next;
+            
+            if(runner == roller) return true;
+            
+        }
+        
+        return false;
+    }
+}

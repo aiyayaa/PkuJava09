@@ -1,0 +1,21 @@
+public class Solution {
+    public int climbStairs(int n) {
+/*        if (n == 1) return 1;
+        else if (n == 2) return 2;
+        else return climbStairs(n-1) + climbStairs(n-2);
+        
+        */ //当n=44时，由于递归的层数太多，需要的内存指数级递增。这也是递归的弊端。而且n越大弊端表现的越明显。
+        int a = 0;
+        int b = 1;
+        int sum = 0;
+        
+        for(int i = 1; i <= n; i++){
+            sum = a + b;
+            a = b;
+            b = sum;
+        }
+        
+        return sum;
+        
+    }
+}
