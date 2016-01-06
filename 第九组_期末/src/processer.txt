@@ -1,0 +1,32 @@
+package spider;
+
+import java.util.List;
+
+import us.codecraft.webmagic.Page;
+import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.Spider;
+import us.codecraft.webmagic.pipeline.ConsolePipeline;
+import us.codecraft.webmagic.processor.PageProcessor;
+
+public class DoubanPageProcesser implements PageProcessor {
+	private Site site = Site.me().setDomain("http://www.douban.com/people/")
+	           .addStartUrl("http://book.douban.com/");
+
+	        public void process(Page page) {
+	            List<String> links = page.getHtml().links().regex("http://www\\.douban\\.tag/book?start").all();
+	            page.addTargetRequests(links);
+	            page.putField("title", page.getHtml().xpath("//div[@class='title").toString());
+	            page.putField("content", page.getHtml().$("rating number").toString());
+	            page.putField("tags",page.getHtml().xpath("//div[@class='tag']").all());
+	        }
+
+	        public Site getSite() {
+	            return site;
+
+	        }
+
+	        public static void main(String[] args) {
+	            Spider.create(new DoubanPageProcesser())
+	                 .pipeline(new ConsolePipeline()).run();
+	        }
+}
